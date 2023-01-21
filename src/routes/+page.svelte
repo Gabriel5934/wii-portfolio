@@ -1,6 +1,12 @@
-<script>
+<script lang="ts">
 	import attentionIcon from '$lib/images/attention.png';
 	import letterAIcon from '$lib/images/letter-a-inside-a-circle.png';
+
+	const aPressed = (event: KeyboardEvent) => {
+		if (event.key === 'a') {
+			window.location.href = '/menu';
+		}
+	};
 </script>
 
 <div class="w-screen h-screen bg-black">
@@ -29,13 +35,13 @@
 			</div>
 		</div>
 		<div class="animate-pulse flex flex-row justify-center items-center gap-4 font-bold">
-			<div class="text-center">
-				<span class="text-white text-sm">Press</span>
-			</div>
-			<img class="w-10" alt="Ícone de atenção" src={letterAIcon} />
-			<div class="text-center">
-				<span class="text-white text-sm">to continue</span>
-			</div>
+			<a href="/menu">
+				<span class="text-white text-sm mr-4">Press</span>
+				<img class="w-10 inline" alt="Ícone de atenção" src={letterAIcon} />
+				<span class="text-white text-sm ml-4">to continue</span>
+			</a>
 		</div>
 	</div>
 </div>
+
+<svelte:window on:keydown|preventDefault={aPressed} />
