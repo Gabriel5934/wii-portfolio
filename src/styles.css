@@ -2,10 +2,6 @@
 @tailwind components;
 @tailwind utilities;
 
-* {
-	cursor: url(wii-open.cur), auto;
-}
-
 @layer utilities {
 	.paused {
 		animation-play-state: paused;

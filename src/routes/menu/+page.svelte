@@ -1,6 +1,8 @@
 <script lang="ts">
 	import dayjs from 'dayjs';
 
+	import menuTheme from '$lib/audio/menu_theme.mp3';
+
 	let navBarHidden = true;
 	let tilesHidden = true;
 
@@ -18,7 +20,7 @@
 
 <div class="w-screen h-screen main">
 	<div class="h-3/4 elements flex gap-8 px-1/4 py-14">
-		<div
+		<button
 			class="h-full w-full border-gray border-8 rounded-3xl drop-shadow-sm bg-white smooth-corners tiles {tilesHidden
 				? 'opacity-0'
 				: 'opacity-100'}"
@@ -56,6 +58,8 @@
 		</div>
 	</div>
 </div>
+
+<embed src={menuTheme} loop="true" autostart="true" width="2" height="0" />
 
 <style>
 	.main {
@@ -99,5 +103,13 @@
 			mask-image: paint(smooth-corners);
 			--smooth-corners: 10;
 		}
+	}
+
+	* {
+		cursor: url(wii-auto.cur), default;
+	}
+
+	button {
+		cursor: url(wii-pointer.cur), pointer;
 	}
 </style>
