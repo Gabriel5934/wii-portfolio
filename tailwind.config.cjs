@@ -25,6 +25,9 @@ module.exports = {
 			dropShadow: {
 				sm: '0 5px 5px rgba(0, 0, 0, 0.3)',
 				md: '0 10px 10px rgba(0, 0, 0, 0.5)'
+			},
+			spacing: {
+				'1/4': '25%'
 			}
 		}
 	},

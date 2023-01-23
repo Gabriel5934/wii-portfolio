@@ -1,16 +1,28 @@
 <script lang="ts">
+	import { goto } from '$app/navigation';
+
 	import attentionIcon from '$lib/images/attention.png';
 	import letterAIcon from '$lib/images/letter-a-inside-a-circle.png';
 
-	const aPressed = (event: KeyboardEvent) => {
+	let fadeOut = false;
+
+	const handleKeyPress = (event: KeyboardEvent) => {
 		if (event.key === 'a') {
-			window.location.href = '/menu';
+			navigateToMenu();
 		}
+	};
+
+	const navigateToMenu = () => {
+		fadeOut = true;
+
+		setTimeout(() => {
+			goto('/menu');
+		}, 2000);
 	};
 </script>
 
 <div class="w-screen h-screen bg-black">
-	<div class="flex h-full flex-col gap-16 justify-center">
+	<div class="flex h-full flex-col gap-16 justify-center {fadeOut ? 'fadeOut' : ''}">
 		<div class="flex items-center gap-1 justify-center">
 			<img class="w-24" alt="Ícone de atenção" src={attentionIcon} />
 			<span class="text-white text-xl font-bold">WARNING-HEALTH AND SAFETY</span>
@@ -35,13 +47,30 @@
 			</div>
 		</div>
 		<div class="animate-pulse flex flex-row justify-center items-center gap-4 font-bold">
-			<a href="/menu">
+			<button on:click={navigateToMenu}>
 				<span class="text-white text-sm mr-4">Press</span>
 				<img class="w-10 inline" alt="Ícone de atenção" src={letterAIcon} />
 				<span class="text-white text-sm ml-4">to continue</span>
-			</a>
+			</button>
 		</div>
 	</div>
 </div>
 
-<svelte:window on:keydown|preventDefault={aPressed} />
+<svelte:window on:keydown={handleKeyPress} />
+
+<style>
+	.fadeOut {
+		animation: fadeIn ease 1s;
+		animation-iteration-count: 1;
+		animation-fill-mode: forwards;
+	}
+
+	@keyframes fadeIn {
+		0% {
+			opacity: 1;
+		}
+		100% {
+			opacity: 0;
+		}
+	}
+</style>
